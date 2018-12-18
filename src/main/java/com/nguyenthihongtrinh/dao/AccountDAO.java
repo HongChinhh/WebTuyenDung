@@ -1,8 +1,12 @@
 package com.nguyenthihongtrinh.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Component;
 
 import com.nguyenthihongtrinh.entity.Account;
 
@@ -10,6 +14,7 @@ import com.nguyenthihongtrinh.entity.Account;
  * @author Nguyen Thi Hong Trinh
  * @since  13/12/2018
  */
+@Component
 public class AccountDAO extends JdbcDaoSupport {
 
 	/**
@@ -22,7 +27,8 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @return int
 	 */
 	public int login(Account account) {
-		return 0;
+		String query = "select * from account where userName = ? and password = ?";
+		return this.getJdbcTemplate().queryForObject(query, Integer.class);
 	}
 
 	/**
@@ -34,7 +40,8 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @return list of accounts
 	 */
 	public List<Account> getAll() {
-		return null;
+		String query = "select * from account";
+		return (List<Account>) this.getJdbcTemplate().queryForObject(query, new AccountMapper());
 	}
 
 	/**
@@ -47,7 +54,9 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @return account
 	 */
 	public Account getByUserName(String userName) {
-		return null;
+		String query = "select * from account where userName = ?";
+		return this.getJdbcTemplate().queryForObject(query, new Object[] { userName },
+				new AccountMapper());
 	}
 
 	/**
@@ -59,7 +68,10 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @param account a new account
 	 */
 	public void add(Account account) {
-		
+		String query = "insert account values (?,?)";
+		this.getJdbcTemplate().update(query, new Object[] {
+				account.getUserName(), account.getPassword()
+		});
 	}
 
 	/**
@@ -71,7 +83,10 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @param account account need updating
 	 */
 	public void update(Account account) {
-		
+		String query = "update account set password = ? where userName = ?";
+		this.getJdbcTemplate().update(query, new Object[] {
+				account.getPassword(), account.getUserName()
+		});
 	}
 
 	/**
@@ -83,6 +98,15 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @param account account need deleting
 	 */
 	public void delete(String userName) {
+		String query = "delete from account where userName = ?";
+		this.getJdbcTemplate().update(query, new Object[] { userName });
+	}
+	
+	private static final class AccountMapper implements RowMapper<Account> {
+		
+		public Account mapRow(ResultSet resultSet, int param) throws SQLException {
+			return new Account(resultSet.getString("userName"), resultSet.getString("password"));
+		}
 		
 	}
 
