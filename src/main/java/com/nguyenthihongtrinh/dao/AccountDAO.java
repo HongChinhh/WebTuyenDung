@@ -27,7 +27,7 @@ public class AccountDAO extends JdbcDaoSupport {
 	 * @return int
 	 */
 	public int login(Account account) {
-		String query = "select * from account where userName = ? and password = ?";
+		String query = "select * from ParentCategory where userName = ? and password = ?";
 		return this.getJdbcTemplate().queryForObject(query, Integer.class);
 	}
 
