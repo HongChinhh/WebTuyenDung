@@ -62,12 +62,12 @@ public class PostDAO extends BaseDAO {
 	 */
 	public void add(Post post) {
 		String query = "insert Post values (?,?,?,?,?,?,?,?,?,?,?)";
-		this.getJdbcTemplate().update(query, new Object[] {
+		this.getJdbcTemplate().update(query, 
 				post.getIdPost(), post.getBody()
 				,post.getTitle(),post.getUrl(),post.getNoteImage(), post.getAuthor(),
 				post.getCreationTime(), post.getPublishedTime(),post.getStatus(),post.getUser_IdUser(),
 				post.getSubCategory_IdSubCategory()
-		});
+		);
 	}
 
 	/**
@@ -81,9 +81,8 @@ public class PostDAO extends BaseDAO {
 	public void update(Post post) {
 		String query = "update Post set Body = ?, Title=?,Url=?, NoteImage=?, Author=?,CreationTime=?, PublishedTime=?,Status=?, User_IdUser=?, SubCategory_IdSubCategory=?"
 			+ " where IdPost = ?";
-		this.getJdbcTemplate().update(query, new Object[] {
-				post.getBody(), post.getTitle(),post.getUrl(),post.getNoteImage(), post.getAuthor(),post.getCreationTime(),post.getPublishedTime(),post.getStatus(),post.getUser_IdUser(),post.getSubCategory_IdSubCategory()
-		});
+		this.getJdbcTemplate().update(query,post.getBody(), post.getTitle(),post.getUrl(),post.getNoteImage(), post.getAuthor(),post.getCreationTime(),post.getPublishedTime(),post.getStatus(),post.getUser_IdUser(),post.getSubCategory_IdSubCategory()
+		);
 	}
 
 	/**
@@ -96,7 +95,7 @@ public class PostDAO extends BaseDAO {
 	 */
 	public void delete(Integer idPost ) {
 		String query = "delete from Post where IdPost = ?";
-		this.getJdbcTemplate().update(query, new Object[] { idPost });
+		this.getJdbcTemplate().update(query, idPost );
 	}
 	
 	private static final class PostMapper implements RowMapper<Post> {

@@ -60,10 +60,10 @@ public class PrivilegeDAO extends BaseDAO {
 	 */
 	public void add(Privilege privilege) {
 		String query = "insert Privilege values (?,?,?)";
-		this.getJdbcTemplate().update(query, new Object[] {
+		this.getJdbcTemplate().update(query, 
 				privilege.getIdPrivilege(), privilege.getName()
 				,privilege.getDescription()
-		});
+		);
 	}
 
 	/**
@@ -76,9 +76,8 @@ public class PrivilegeDAO extends BaseDAO {
 	 */
 	public void update(Privilege privilege) {
 		String query = "update Privilege set Name = ?, Description=? where IdPrivilege = ?";
-		this.getJdbcTemplate().update(query, new Object[] {
-				privilege.getName(), privilege.getDescription(),privilege.getIdPrivilege()
-		});
+		this.getJdbcTemplate().update(query, privilege.getName(), privilege.getDescription(),privilege.getIdPrivilege()
+		);
 	}
 
 	/**
@@ -91,7 +90,7 @@ public class PrivilegeDAO extends BaseDAO {
 	 */
 	public void delete(Integer idPrivilege ) {
 		String query = "delete from Privilege where idPrivilege = ?";
-		this.getJdbcTemplate().update(query, new Object[] { idPrivilege });
+		this.getJdbcTemplate().update(query,idPrivilege );
 	}
 	
 	private static final class PrivilegeMapper implements RowMapper<Privilege> {

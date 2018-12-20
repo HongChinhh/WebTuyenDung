@@ -59,10 +59,9 @@ public class subcategoryDAO extends BaseDAO {
 	 */
 	public void add(SubCategory subCategory) {
 		String query = "insert SubCategory values (?,?,?,?)";
-		this.getJdbcTemplate().update(query, new Object[] {
-				subCategory.getIdSubCategory(), subCategory.getName()
+		this.getJdbcTemplate().update(query, subCategory.getIdSubCategory(), subCategory.getName()
 				,subCategory.getUrl(),subCategory.getParentCategory_IdParentCategory()
-		});
+		);
 	}
 
 	/**
@@ -75,9 +74,9 @@ public class subcategoryDAO extends BaseDAO {
 	 */
 	public void update(SubCategory subCategory) {
 		String query = "update SubCategory set Name = ?, Url=?,ParentCategory_IdParentCategory=? where IdSubCategory = ?";
-		this.getJdbcTemplate().update(query, new Object[] {
+		this.getJdbcTemplate().update(query, 
 				subCategory.getName(), subCategory.getUrl(),subCategory.getParentCategory_IdParentCategory()
-		});
+		);
 	}
 
 	/**
@@ -90,7 +89,7 @@ public class subcategoryDAO extends BaseDAO {
 	 */
 	public void delete(Integer idSubCategory ) {
 		String query = "delete from SubCategory where IdSubCategory = ?";
-		this.getJdbcTemplate().update(query, new Object[] { idSubCategory });
+		this.getJdbcTemplate().update(query,  idSubCategory );
 	}
 	
 	private static final class SubCategoryMapper implements RowMapper<SubCategory> {

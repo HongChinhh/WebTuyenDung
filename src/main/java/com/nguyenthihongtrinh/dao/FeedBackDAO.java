@@ -60,10 +60,10 @@ public class FeedBackDAO extends BaseDAO {
 	 */
 	public void add(FeedBack feedBack) {
 		String query = "insert FeedBack values (?,?,?)";
-		this.getJdbcTemplate().update(query, new Object[] {
+		this.getJdbcTemplate().update(query, 
 				feedBack.getIdFeedBack(), feedBack.getContent()
 				,feedBack.getUser_IdUser()
-		});
+		);
 	}
 
 	/**
@@ -76,9 +76,8 @@ public class FeedBackDAO extends BaseDAO {
 	 */
 	public void update(FeedBack feedBack) {
 		String query = "update FeedBack set Content = ?, User_IdUser=? where IdFeedBack = ?";
-		this.getJdbcTemplate().update(query, new Object[] {
-				feedBack.getContent(), feedBack.getUser_IdUser(),feedBack.getIdFeedBack()
-		});
+		this.getJdbcTemplate().update(query, feedBack.getContent(), feedBack.getUser_IdUser(),feedBack.getIdFeedBack()
+		);
 	}
 
 	/**
@@ -91,14 +90,14 @@ public class FeedBackDAO extends BaseDAO {
 	 */
 	public void delete(Integer idFeedBack ) {
 		String query = "delete from FeedBack where IdFeedBack = ?";
-		this.getJdbcTemplate().update(query, new Object[] { idFeedBack });
+		this.getJdbcTemplate().update(query, idFeedBack );
 	}
 	
 	private static final class FeedBackMapper implements RowMapper<FeedBack> {
 		
 		public FeedBack mapRow(ResultSet resultSet, int param) throws SQLException {
 			return new FeedBack(resultSet.getInt("idSubCategory"), resultSet.getString("content")
-					, resultSet.getInt("user_IdUser"));
+					, resultSet.getInt("user_IdUser"),resultSet.getInt("post_IdPost"));
 		}
 		
 	}

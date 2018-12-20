@@ -71,9 +71,8 @@ public class ParentCategoryDAO extends BaseDAO {
 	 */
 	public void add(ParentCategory parentCategory) {
 		String query = "insert ParentCategory values (?,?,?)";
-		this.getJdbcTemplate().update(query, new Object[] {
-				parentCategory.getIdParentCategory(), parentCategory.getNameParentCat(), parentCategory.getStatus()
-		});
+		this.getJdbcTemplate().update(query,parentCategory.getIdParentCategory(),
+				parentCategory.getNameParentCat(), 	parentCategory.getStatus());
 	}
 
 	/**
@@ -86,9 +85,7 @@ public class ParentCategoryDAO extends BaseDAO {
 	 */
 	public void update(ParentCategory parentCategory ) {
 		String query = "update ParentCategory set NameParentCat = ? , Status = ? where IdParentCat = ?";
-		this.getJdbcTemplate().update(query, new Object[] {
-				parentCategory.getNameParentCat(), parentCategory.getStatus()
-		});
+		this.getJdbcTemplate().update(query,parentCategory.getNameParentCat(), parentCategory.getStatus());
 	}
 
 	/**
@@ -101,7 +98,7 @@ public class ParentCategoryDAO extends BaseDAO {
 	 */
 	public void delete(Integer idParentCat) {
 		String query = "delete from ParentCategry where IdParentCategory = ?";
-		this.getJdbcTemplate().update(query, new Object[] { idParentCat });
+		this.getJdbcTemplate().update(query, idParentCat );
 	}
 	
 	private static final class ParentCategoryMapper implements RowMapper<ParentCategory> {

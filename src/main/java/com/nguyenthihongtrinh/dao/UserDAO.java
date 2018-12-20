@@ -60,11 +60,11 @@ public class UserDAO extends BaseDAO {
 	 */
 	public void add(User user) {
 		String query = "insert User values (?,?,?,?,?,?,?,?)";
-		this.getJdbcTemplate().update(query, new Object[] {
+		this.getJdbcTemplate().update(query, 
 				user.getIdUser(), user.getUserName(),user.getPassWord()
 				,user.getFullName(),user.getEmail(),user.getAddress(),user.getStatus(),
 				user.getPrivilege_IdPrivilege()
-		});
+		);
 	}
 
 	/**
@@ -78,10 +78,9 @@ public class UserDAO extends BaseDAO {
 	public void update(User user) {
 		String query = "update User set userName = ?,passWord=?,fullName=?,email=?,address=?,status=?,privilege_IdPrivilege=?"
 				+ "where idUser = ?";
-		this.getJdbcTemplate().update(query, new Object[] {
-				user.getUserName(), user.getPassWord(),user.getFullName(),user.getEmail(),user.getAddress()
+		this.getJdbcTemplate().update(query, user.getUserName(), user.getPassWord(),user.getFullName(),user.getEmail(),user.getAddress()
 				,user.getStatus(),user.getPrivilege_IdPrivilege(),user.getIdUser()
-		});
+		);
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class UserDAO extends BaseDAO {
 	 */
 	public void delete(Integer idUser ) {
 		String query = "delete from User where IdUser = ?";
-		this.getJdbcTemplate().update(query, new Object[] { idUser });
+		this.getJdbcTemplate().update(query, idUser );
 	}
 	
 	private static final class UserMapper implements RowMapper<User> {
