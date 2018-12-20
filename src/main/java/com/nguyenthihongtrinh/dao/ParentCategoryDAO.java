@@ -17,7 +17,7 @@ import com.nguyenthihongtrinh.entity.ParentCategory;
  * @since  13/12/2018
  */
 @Component
-public class ParentCategoryDAO extends JdbcDaoSupport {
+public class ParentCategoryDAO extends BaseDAO {
 
 	/**
 	 * Login

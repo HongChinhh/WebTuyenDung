@@ -17,7 +17,7 @@ import com.nguyenthihongtrinh.entity.User;
  * @since  13/12/2018
  */
 @Component
-public class UserDAO extends JdbcDaoSupport {
+public class UserDAO extends BaseDAO {
 
 	
 	

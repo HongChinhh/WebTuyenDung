@@ -17,7 +17,7 @@ import com.nguyenthihongtrinh.entity.SubCategory;
  * @since  13/12/2018
  */
 @Component
-public class FeedBackDAO extends JdbcDaoSupport {
+public class FeedBackDAO extends BaseDAO {
 
 	
 	

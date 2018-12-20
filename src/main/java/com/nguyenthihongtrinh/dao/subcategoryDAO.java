@@ -16,7 +16,7 @@ import com.nguyenthihongtrinh.entity.SubCategory;
  * @since  13/12/2018
  */
 @Component
-public class subcategoryDAO extends JdbcDaoSupport {
+public class subcategoryDAO extends BaseDAO {
 
 	
 	

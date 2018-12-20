@@ -19,7 +19,7 @@ import javafx.geometry.Pos;
  * @since  13/12/2018
  */
 @Component
-public class PostDAO extends JdbcDaoSupport {
+public class PostDAO extends BaseDAO {
 
 	
 	
